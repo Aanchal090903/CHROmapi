@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "ContextIQ – Tab Assassin",
+    "version": "1.0",
+    "description": "40 tabs → 3 clicks → clean browser.",
+    "icons": { "128": "icon.png" },
+    "action": { "default_popup": "popup.html" },
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "storage",
+      "scripting",
+      "tabGroups"
+    ],
+    "host_permissions": ["<all_urls>"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "content_scripts": [{
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }]
+  }
