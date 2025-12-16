@@ -1,24 +1,65 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
+  <title>ContextIQ – Tab Assassin</title>
   <style>
-    body { width: 340px; font-family: system-ui; padding: 12px; margin: 0; }
-    h3 { margin: 0 0 10px; font-size: 16px; }
-    button { background: #0078d4; color: white; border: none; padding: 10px; width: 100%; border-radius: 6px; font-size: 14px; cursor: pointer; margin-bottom: 10px; }
-    button:hover { background: #005a9e; }
-    .tree { margin: 0; }
-    .group { margin: 8px 0; }
-    .group-title { font-weight: bold; color: #333; cursor: pointer; }
-    .tab { margin: 4px 0 4px 20px; display: flex; justify-content: space-between; align-items: center; }
-    .action { background: #28a745; color: white; border: none; padding: 3px 8px; font-size: 10px; border-radius: 4px; cursor: pointer; }
-    .action:hover { background: #1e7e34; }
+    body { width: 380px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin:0; background:#fafafa; }
+    header { background:#0078d4; color:white; padding:12px; text-align:center; font-size:15px; font-weight:600; }
+    main { padding:12px; }
+    #organize { 
+      background:#0078d4; color:white; border:none; padding:12px; width:100%; border-radius:8px; 
+      font-size:15px; font-weight:600; cursor:pointer; margin-bottom:12px; box-shadow:0 2px 6px rgba(0,0,0,0.15);
+    }
+    #organize:hover { background:#106ebe; }
+    #organize:disabled { background:#999; cursor:not-allowed; }
+
+    .status { text-align:center; padding:10px; color:#444; font-size:13px; display:none; }
+    .spinner { border:3px solid #f0f0f0; border-top:3px solid #0078d4; border-radius:50%; width:20px; height:20px; animation:spin 1s linear infinite; display:inline-block; margin-right:8px; }
+    @keyframes spin { 0% { transform:rotate(0deg); } 100% { transform:rotate(360deg); } }
+
+    .group { 
+      background:white; border:1px solid #ddd; border-radius:8px; margin-bottom:12px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.1);
+    }
+    .group-header { 
+      background:#e8f4fc; padding:10px 12px; font-weight:600; cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+    }
+    .group-header:hover { background:#d0ebff; }
+    .collapse-icon { font-size:12px; transition:0.2s; }
+    .collapsed .collapse-icon { transform:rotate(-90deg); }
+
+    .tabs { padding:0 12px 8px; max-height:400px; overflow-y:auto; }
+    .tab-item { 
+      padding:8px 0; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center; font-size:13px;
+    }
+    .tab-item:last-child { border-bottom:none; }
+    .tab-title { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-right:8px; }
+    .actions button { font-size:11px; padding:4px 8px; margin-left:4px; border:none; border-radius:4px; cursor:pointer; }
+    .keep { background:#28a745; color:white; }
+    .close { background:#dc3545; color:white; }
+    .summary { background:#6c757d; color:white; }
+
+    .preserved { background:#fff8e6; padding:10px; border-radius:6px; font-size:12px; margin-top:12px; }
+    .preserved ul { margin:4px 0 0 16px; }
   </style>
 </head>
 <body>
-  <h3>ContextIQ</h3>
-  <button id="organize">Organize & Assassinate (1 click)</button>
-  <div id="tree"></div>
+  <header>ContextIQ – Tab Assassin</header>
+  <main>
+    <button id="organize">Organize & Assassinate (1 click)</button>
+    
+    <div id="status" class="status">
+      <span class="spinner"></span> Thinking with Gemini...
+    </div>
+
+    <div id="results"></div>
+
+    <div id="preserved-context" class="preserved" style="display:none;">
+      <strong>Preserved unfinished work:</strong>
+      <ul id="preserved-list"></ul>
+    </div>
+  </main>
+
   <script src="popup.js"></script>
 </body>
 </html>
