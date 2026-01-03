@@ -40,3 +40,9 @@ export async function getScreenshots() {
     req.onsuccess = () => resolve(req.result.reverse());
   });
 }
+
+export async function deleteScreenshot(id) {
+  const db = await openDB();
+  const tx = db.transaction(STORE_NAME, 'readwrite');
+  tx.objectStore(STORE_NAME).delete(id);
+}

@@ -1,60 +1,130 @@
 body {
-    width: 360px;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #fafafa;
-  }
-  
-  header {
-    padding: 12px;
-    font-weight: 600;
-    background: #f4f4f5;
-    text-align: center;
-  }
-  
-  .actions {
-    padding: 10px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #6366f1;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  
-  #dropzone {
-    margin: 10px;
-    padding: 20px;
-    border: 2px dashed #d4d4d8;
-    border-radius: 12px;
-    text-align: center;
-    color: #71717a;
-  }
-  
-  #dropzone.dragover {
-    background: #eef2ff;
-    border-color: #6366f1;
-  }
-  
-  #inbox {
-    padding: 10px;
-  }
-  
-  .item {
-    background: white;
-    border-radius: 10px;
-    padding: 8px;
-    margin-bottom: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,.08);
-  }
-  
-  .item img {
-    width: 100%;
-    border-radius: 8px;
-  }
-  
+  width: 360px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #fef3f9 0%, #f0f4ff 100%);
+}
+
+h1 {
+  padding: 16px;
+  margin: 0;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffd4e5 0%, #d4e0ff 100%);
+  text-align: center;
+  color: #6b5b95;
+  font-size: 20px;
+}
+
+#dropzone {
+  margin: 12px;
+  padding: 24px;
+  border: 3px dashed #e0c3fc;
+  border-radius: 16px;
+  text-align: center;
+  color: #9d8cc2;
+  background: white;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+#dropzone.dragover {
+  background: #f5efff;
+  border-color: #c4a4ff;
+  transform: scale(1.02);
+}
+
+#inbox {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.item {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(200, 180, 255, 0.15);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(200, 180, 255, 0.25);
+}
+
+.item img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+.delete-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #ff9eb7;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(255, 158, 183, 0.4);
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background: #ff7396;
+  transform: scale(1.1);
+}
+
+
+.dragging {
+  opacity: 0.4;
+  transform: scale(0.95);
+}
+
+#trash {
+  margin: 8px 12px 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 2px dashed #ff9eb7;
+  text-align: center;
+  color: #ff7396;
+  font-weight: 600;
+  background: #fff5f8;
+  transition: all 0.2s ease;
+}
+
+#trash.dragover {
+  background: #ffe1ea;
+  border-color: #ff4f7a;
+  transform: scale(1.02);
+}
+
+.copied {
+  outline: 3px solid #8b5cf6;
+  transform: scale(1.05);
+}
+.copied::after {
+  content: "Copied!";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #8b5cf6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
